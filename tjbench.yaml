@@ -1,0 +1,28 @@
+metadata:
+    format: "Lava-Test Test Definition 1.0"
+    name: tjbench
+    description: "Tjbench is used to benchmark the performance of libjpeg-turbo and libjpeg62 for android.
+                  For each test image, the tjbench program is used to measure the compression and decompression
+                  performance and the compression ratio obtained when compressing the test image as a JPEG image
+                  and then decompressing the JPEG image back to its original, uncompressed form."
+    maintainer:
+        - harigopal.gollamudi@linaro.org
+    os:
+        - android
+    scope:
+        - performance
+    devices:
+        - arndale
+        - panda
+        - panda-es
+        - vexpress-a9
+        - vexpress-tc2
+        - juno
+
+run:
+    steps:
+        - "disablesuspend.sh"
+        - "./android/scripts/tjbench/tjbenchstart.sh"
+
+parse:
+    pattern: "^(?P<test_case_id>\\S+)\\s+(?P<result>\\S+)\\s+(?P<measurement>[\\d.]+)\\s+(?P<units>\\S+)$"
